@@ -5,6 +5,11 @@ import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
 import "swiper/components/scrollbar/scrollbar.scss";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+
+import Gallery from "../components/Gallery";
+
+import "./styles/PetHome.css";
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 class PetHome extends React.Component {
@@ -38,11 +43,19 @@ class PetHome extends React.Component {
           {this.state.gif.map((prod) => (
             <SwiperSlide key={prod.id}>
               <a href="">
+                <div className="title-banner">
+                  <p className="title-big-banner">{prod.nombre}</p>
+                  <p className="banner-description">{prod.brevedescripcion}</p>
+                  <div className="btn-adqui">COMPRAR AHORA</div>
+                </div>
                 <img src={prod.fotoportada} alt="" />
               </a>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="Gallery_container">
+          <Gallery />
+        </div>
       </div>
     );
   }
