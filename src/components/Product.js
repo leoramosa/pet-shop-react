@@ -12,18 +12,43 @@ function Product(props) {
           alt=""
         />
       </div>
+
+      <div className="color-talla">
+        <div className="colores-product">
+          {props.datos.idcolor.map((colores) => (
+            <div
+              key={colores.id}
+              className="color_prod"
+              style={{ backgroundColor: colores.numcolor }}
+            ></div>
+          ))}
+        </div>
+        <div className="colores-product">
+          {props.datos.idtallaproducto.map((tallas) => (
+            <div key={tallas.id} className="list-tallas">
+              {tallas.nomtalla}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="info-products">
         <div className="info-price">
-          <p>{props.datos.nombre}</p>
-          <p>{props.datos.nombre}</p>
+          <div>{props.datos.nombre}</div>
+          <div className="prince-product">S/.{props.datos.precionormal}</div>
         </div>
         <div className="product-btn">
           <Link to={"/productos/" + props.datos.id}>
-            <Button className="hola" variant="contained" fullWidth="bool">
+            <Button className="" variant="contained" fullWidth="bool">
               Detalle
             </Button>
           </Link>
-          <Button variant="contained" color="primary" fullWidth="bool">
+          <Button
+            style={{ background: "#673ab7d4" }}
+            variant="contained"
+            color="primary"
+            fullWidth="bool"
+          >
             Comprar
           </Button>
         </div>

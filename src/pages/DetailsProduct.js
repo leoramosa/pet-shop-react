@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import InputNumber from "../components/InputNumber";
 import "./styles/Details.css";
 import { Link } from "react-router-dom";
-
+import Button from "@material-ui/core/Button";
 function DetailsProduct(props) {
   const [producto, setProducto] = useState({
     idcolor: [],
@@ -46,7 +46,7 @@ function DetailsProduct(props) {
       </div>
       <div className="container">
         <div className="row">
-          <div id="content-wrapper">
+          <div className="col-xs-12 col-sm-12 col-md-7" id="content-wrapper">
             <div id="slide-wrapper">
               <div id="slider">
                 <img
@@ -71,20 +71,30 @@ function DetailsProduct(props) {
                 />
               </div>
             </div>
-
-            <img id="featured" src={producto.fotosproducts1} alt="" />
+            <div className="">
+              <img
+                className="img-fluid"
+                id="featured"
+                src={producto.fotosproducts1}
+                alt=""
+              />
+            </div>
           </div>
-          <div className="description__product">
+          <div className="col-xs-12 col-sm-12 col-md-5 description__product">
             <p className="title_product">{producto.nombre}</p>
             <p className="description_product">{producto.descripcion}</p>
             <div className="title_price">
               <div className="price_internet">
+                <div>Normal</div>
+                <div>S/. {producto.precionormal}</div>
+              </div>
+              <div className="price_internet">
                 <div>Internet</div>
-                <div>S/ 69.95</div>
+                <div>S/ {producto.preciointernet}</div>
               </div>
               <div className="puntos__internet">
                 <div>Acumulas</div>
-                <div>55 RipleyPuntos GO</div>
+                <div>{producto.preciointernet} PetPuntos</div>
               </div>
             </div>
             <div className="colors__product">
@@ -98,7 +108,7 @@ function DetailsProduct(props) {
               </div>
             </div>
             <div className="talla__product">
-              <p className="tall___product-title">TALLA</p>
+              <p className="talla___product-title">TALLA</p>
               <div className="talla-type">
                 {producto.idtallaproducto.map((talla) => (
                   <div className="style-color" key={talla.id}>
@@ -108,7 +118,12 @@ function DetailsProduct(props) {
               </div>
             </div>
             <div className="btn_compra_quanty">
-              <button>agregar a bolsa</button>
+              <InputNumber min={1} max={10} />
+              <div className="btn-add">
+                <Button variant="contained" color="primary" fullWidth="bool">
+                  agregar a bolsa
+                </Button>
+              </div>
             </div>
           </div>
         </div>

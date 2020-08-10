@@ -22,6 +22,7 @@
   padding-top: 13px;
   font-weight: 800;
   font-size: 20px;
+  color: #673ab7;
 }
 
 .btn-bpro {
@@ -33,6 +34,15 @@
   font-size: 17px;
 }
 
+.btn-home a {
+  text-decoration: none;
+  color: #673ab7;
+}
+
+.slider-btn a {
+  text-decoration: none;
+}
+
 .product_destacado {
   padding: 5px;
   border: 2px solid #c5c5c5;
@@ -41,8 +51,6 @@
 
 .colors {
   position: absolute;
-  padding: 5px;
-  display: flex;
 }
 
 .color_prod {
@@ -53,6 +61,28 @@
   margin: 4px;
 }
 
-.swiper-container {
+.list-tallas {
+  border: 1px solid #a7a7a7;
+  border-radius: 1px;
+  padding: 3px;
+  margin: 2px;
+  margin-right: 5px;
+  text-align: center;
+  color: #a7a7a7;
+  font-size: 13px;
+}
+
+.tallas-prod {
+  position: absolute;
+  right: 0;
+  padding: 2px;
+}
+
+.title-talla {
+  font-size: 11px;
+}
+
+.swiper__content {
   padding-bottom: 34px;
+  padding-top: 15px;
 }

@@ -16,6 +16,8 @@ import Gallery from "../components/Gallery";
 
 import { Link } from "react-router-dom";
 
+import TitleDestacado from "../images/title-destacado.png";
+
 import "./styles/PetHome.css";
 import axios from "axios";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -54,7 +56,7 @@ class PetHome extends React.Component {
         >
           {this.state.gif.map((prod) => (
             <SwiperSlide key={prod.id}>
-              <a href="">
+              <Link to={"/productos/" + prod.id}>
                 <div className="title-banner">
                   <p className="title-big-banner">{prod.nombre}</p>
                   <p className="banner-description">{prod.brevedescripcion}</p>
@@ -63,10 +65,13 @@ class PetHome extends React.Component {
                   </Link>
                 </div>
                 <img src={prod.fotoportada} alt="" />
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="">
+          <img className="img-fluid" src={TitleDestacado} alt="" />
+        </div>
         <div className="Gallery_container">
           <Gallery />
         </div>

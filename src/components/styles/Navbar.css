@@ -9,3 +9,8 @@
   text-decoration: none;
   color: white;
 }
+
+.MuiAppBar-colorPrimary {
+  color: #fff;
+  background-color: #172575;
+}

@@ -16,11 +16,17 @@ function HomeProducts() {
     <div className="">
       <div className="container">
         <div className="row">
-          <div className="col-3">hola</div>
+          <div className="col-3">Categorias</div>
           <div className="col-9">
             <div className="product-grid">
               {homeprod.map((prod) => {
-                return <Product className="product-grid" datos={prod} />;
+                return (
+                  <Product
+                    key={prod.id}
+                    className="product-grid"
+                    datos={prod}
+                  />
+                );
               })}
             </div>
           </div>

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import "./styles/Footer.scss";
 
 function Footer() {
   return (
     <div>
       <footer className="Footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-md-4">
-              <div class="box">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12 col-md-4">
+              <div className="box">
                 <h3>Productos</h3>
                 <ul>
                   <li>
@@ -23,21 +23,21 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xs-12 col-md-4">
-              <div class="box">
+            <div className="col-xs-12 col-md-4">
+              <div className="box">
                 <h3>Acerca del Petshop</h3>
                 <ul>
                   <li>
-                    <a routerLink="/about-us">Sobre nosotros</a>
+                    <a>Sobre nosotros</a>
                   </li>
                   <li>
-                    <a routerLink="/stores">Nuestras tiendas</a>
+                    <a>Nuestras tiendas</a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="col-xs-12 col-md-4">
-              <div class="box">
+            <div className="col-xs-12 col-md-4">
+              <div className="box">
                 <h3>Contacto</h3>
                 <mat-form-field>
                   <input />

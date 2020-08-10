@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
@@ -8,62 +8,77 @@ import Button from "@material-ui/core/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import "./styles/Gallery.css";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
-class Gallery extends React.Component {
-  state = {
-    loading: true,
-    product: null,
-  };
+function Gallery() {
+  const [gallery, setLista] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://apirestshoop.herokuapp.com/servicios/productos/")
+      .then((res) => {
+        setLista(res.data);
+      });
+  }, []);
 
-  async componentDidMount() {
-    const url =
-      "https://apirestshoop.herokuapp.com/servicios/productos/?activo=0";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ product: data, loading: false });
-  }
-
-  render() {
-    if (this.state.loading === true) {
-      return "Loading...";
-    }
-    return (
-      <div className="">
-        <Swiper
-          spaceBetween={20}
-          slidesPerView={4}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          {this.state.product.map((photo) => (
-            <SwiperSlide key={photo.id}>
-              <div className="product_destacado">
-                <div className="colors">
-                  {photo.idcolor.map((colores) => (
-                    <div
-                      className="color_prod"
-                      style={{ backgroundColor: colores.numcolor }}
-                    ></div>
-                  ))}
-                </div>
-                <img className="imgbanner" src={photo.photoprincipal} alt="" />
-                <div className="title-bpro">
-                  <p className="title-big-bpro">{photo.nombre}</p>
-
-                  <Button variant="outlined" color="primary">
-                    <Link to={"/productos/" + photo.id}>COMPRAR AHORA</Link>
-                  </Button>
-                </div>
+  return (
+    <div className="">
+      <Swiper
+        className="swiper__content"
+        spaceBetween={20}
+        slidesPerView={4}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+      >
+        {gallery.map((photo) => (
+          <SwiperSlide key={photo.id}>
+            <div className="product_destacado">
+              <div className="colors">
+                {photo.idcolor.map((colores) => (
+                  <div
+                    key={colores.id}
+                    className="color_prod"
+                    style={{ backgroundColor: colores.numcolor }}
+                  ></div>
+                ))}
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    );
-  }
+
+              <div className="tallas-prod">
+                <div className="title-talla">Tallas</div>
+                {photo.idtallaproducto.map((tallas) => (
+                  <div key={tallas.id} className="list-tallas">
+                    {tallas.nomtalla}
+                  </div>
+                ))}
+              </div>
+
+              <img className="imgbanner" src={photo.photoprincipal} alt="" />
+              <div className="title-bpro">
+                <p className="title-big-bpro">{photo.nombre}</p>
+
+                <Button
+                  className="btn-home"
+                  variant="outlined"
+                  color="primary"
+                  fullWidth="bool"
+                >
+                  <Link to={"/productos/" + photo.id}>COMPRAR AHORA</Link>
+                </Button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
 }
 
 export default Gallery;

@@ -18,9 +18,14 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 import { Link } from "react-router-dom";
 
-import './styles/Navbar.css'
+import logopet from "../images/logo.png";
+
+import "./styles/Navbar.css";
 
 const useStyles = makeStyles((theme) => ({
+  maincolor: {
+    background: "#673ab7",
+  },
   Mainlayout: {
     padding: theme.spacing(0),
     width: "1140px",
@@ -49,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(9),
+      marginLeft: theme.spacing(3),
       width: "auto",
     },
   },
@@ -89,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Navbar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -160,7 +165,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className={classes.maincolor} position="static">
         <div xs={12} className={classes.Mainlayout}>
           <Toolbar>
             <IconButton
@@ -171,9 +176,11 @@ export default function PrimarySearchAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              Material-UI
-            </Typography>
+            <div className="">
+              <Link to="/">
+                <img src={logopet} alt="" />
+              </Link>
+            </div>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
