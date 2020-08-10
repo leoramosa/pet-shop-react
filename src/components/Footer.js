@@ -12,13 +12,13 @@ function Footer() {
                 <h3>Productos</h3>
                 <ul>
                   <li>
-                    <Link>Nuevos Productos</Link>
+                    <Link to="">Nuevos Productos</Link>
                   </li>
                   <li>
-                    <Link>En oferta</Link>
+                    <Link to="">En oferta</Link>
                   </li>
                   <li>
-                    <Link>Últimos productos</Link>
+                    <Link to="">Últimos productos</Link>
                   </li>
                 </ul>
               </div>
@@ -28,10 +28,10 @@ function Footer() {
                 <h3>Acerca del Petshop</h3>
                 <ul>
                   <li>
-                    <Link>Sobre nosotros</Link>
+                    <Link to="">Sobre nosotros</Link>
                   </li>
                   <li>
-                    <Link>Nuestras tiendas</Link>
+                    <Link to="">Nuestras tiendas</Link>
                   </li>
                 </ul>
               </div>
