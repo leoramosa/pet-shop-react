@@ -10,7 +10,7 @@ function DetailsProduct(props) {
     idtallaproducto: [],
     idcategoria: [],
   });
-  let valid = props.match.params.id;
+  const valid = props.match.params.id;
   useEffect(() => {
     axios
       .get(`https://apirestshoop.herokuapp.com/servicios/productos/${valid}/`)
