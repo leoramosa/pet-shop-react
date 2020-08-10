@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/Footer.scss";
-
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div>
@@ -12,13 +12,13 @@ function Footer() {
                 <h3>Productos</h3>
                 <ul>
                   <li>
-                    <a>Nuevos Productos</a>
+                    <Link>Nuevos Productos</Link>
                   </li>
                   <li>
-                    <a>En oferta</a>
+                    <Link>En oferta</Link>
                   </li>
                   <li>
-                    <a>Últimos productos</a>
+                    <Link>Últimos productos</Link>
                   </li>
                 </ul>
               </div>
@@ -28,10 +28,10 @@ function Footer() {
                 <h3>Acerca del Petshop</h3>
                 <ul>
                   <li>
-                    <a>Sobre nosotros</a>
+                    <Link>Sobre nosotros</Link>
                   </li>
                   <li>
-                    <a>Nuestras tiendas</a>
+                    <Link>Nuestras tiendas</Link>
                   </li>
                 </ul>
               </div>
@@ -39,9 +39,7 @@ function Footer() {
             <div className="col-xs-12 col-md-4">
               <div className="box">
                 <h3>Contacto</h3>
-                <mat-form-field>
-                  <input />
-                </mat-form-field>
+                <input />
                 <button>Enviar</button>
               </div>
             </div>
