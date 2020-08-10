@@ -10,14 +10,14 @@ function DetailsProduct(props) {
     idtallaproducto: [],
     idcategoria: [],
   });
+  let valid = props.match.params.id;
   useEffect(() => {
-    let id = props.match.params.id;
     axios
-      .get("https://apirestshoop.herokuapp.com/servicios/productos/" + id + "/")
+      .get(`https://apirestshoop.herokuapp.com/servicios/productos/${valid}/`)
       .then((res) => {
         setProducto(res.data);
       });
-  }, [{}]);
+  }, []);
 
   let thumbnails = document.getElementsByClassName("thumbnail");
 
