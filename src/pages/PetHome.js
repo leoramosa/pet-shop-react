@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import TitleDestacado from "../images/title-destacado.png";
 
 import "./styles/PetHome.css";
-import axios from "axios";
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 SwiperCore.use([Autoplay]);
 
