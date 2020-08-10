@@ -1,0 +1,23 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.card-product {
+  margin: 6px;
+  border: 1px solid #909090;
+  border-radius: 4px;
+}
+
+.image-product {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.product-btn {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 4px;
+}
+
+.hola {
+  margin: 4px;
+}

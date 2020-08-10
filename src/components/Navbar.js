@@ -14,6 +14,11 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+
+import { Link } from "react-router-dom";
+
+import './styles/Navbar.css'
 
 const useStyles = makeStyles((theme) => ({
   Mainlayout: {
@@ -137,11 +142,6 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
         <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -189,17 +189,18 @@ export default function PrimarySearchAppBar() {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
+              <div className="link-nav">
+                <Link to="/">Home</Link>
+              </div>
+              <div className="link-nav">
+                <Link to="/products">Productos</Link>
+              </div>
               <IconButton
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
+                <Badge badgeContent={0} color="secondary">
+                  <ShoppingCartIcon />
                 </Badge>
               </IconButton>
               <IconButton

@@ -1,0 +1,58 @@
+.imgbanner {
+  width: 100%;
+}
+
+.rutes {
+  padding-bottom: 20px;
+}
+
+.bannerslider {
+  padding-bottom: 35px;
+}
+.img-baner-pro {
+  border: 2px solid #683ab79f;
+  padding-bottom: 20px;
+}
+
+.title-bpro {
+  text-align: center;
+}
+
+.title-big-bpro {
+  padding-top: 13px;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.btn-bpro {
+  border: 2px solid #673ab7;
+  display: inline-block;
+  padding: 8px;
+  color: #673ab7;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.product_destacado {
+  padding: 5px;
+  border: 2px solid #c5c5c5;
+  border-radius: 4px;
+}
+
+.colors {
+  position: absolute;
+  padding: 5px;
+  display: flex;
+}
+
+.color_prod {
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+
+  margin: 4px;
+}
+
+.swiper-container {
+  padding-bottom: 34px;
+}

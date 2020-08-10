@@ -1,16 +1,25 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
 import "swiper/components/scrollbar/scrollbar.scss";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper";
 
 import Gallery from "../components/Gallery";
 
-import "./styles/PetHome.css";
+import { Link } from "react-router-dom";
 
+import "./styles/PetHome.css";
+import axios from "axios";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Autoplay]);
 
 class PetHome extends React.Component {
   state = {
@@ -19,7 +28,8 @@ class PetHome extends React.Component {
   };
 
   async componentDidMount() {
-    const url = "https://apirestshoop.herokuapp.com/servicios/productos/";
+    const url =
+      "https://apirestshoop.herokuapp.com/servicios/productos/?activo=1/";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ gif: data, loading: false });
@@ -34,6 +44,8 @@ class PetHome extends React.Component {
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           navigation
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
@@ -46,7 +58,9 @@ class PetHome extends React.Component {
                 <div className="title-banner">
                   <p className="title-big-banner">{prod.nombre}</p>
                   <p className="banner-description">{prod.brevedescripcion}</p>
-                  <div className="btn-adqui">COMPRAR AHORA</div>
+                  <Link to={"/productos/" + prod.id}>
+                    <div className="btn-adqui">COMPRAR AHORA</div>
+                  </Link>
                 </div>
                 <img src={prod.fotoportada} alt="" />
               </a>
