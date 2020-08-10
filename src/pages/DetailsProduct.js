@@ -10,14 +10,14 @@ function DetailsProduct(props) {
     idtallaproducto: [],
     idcategoria: [],
   });
-  let id = props.match.params.id;
   useEffect(() => {
+    let id = props.match.params.id;
     axios
       .get("https://apirestshoop.herokuapp.com/servicios/productos/" + id + "/")
       .then((res) => {
         setProducto(res.data);
       });
-  }, []);
+  }, [{}]);
 
   let thumbnails = document.getElementsByClassName("thumbnail");
 
@@ -39,7 +39,7 @@ function DetailsProduct(props) {
   return (
     <div className="main_detail">
       <div className="col-lg-12 rutes">
-        <Link to="/">Home</Link> / <a href="#">Categoría</a> /
+        <Link to="/">Home</Link> / <Link to="">Categoría</Link> /
         {producto.idcategoria.nombrecategoria}
       </div>
       <div className="container">
