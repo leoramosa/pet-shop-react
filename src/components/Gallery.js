@@ -58,12 +58,7 @@ function Gallery() {
               <div className="title-bpro">
                 <p className="title-big-bpro">{photo.nombre}</p>
 
-                <Button
-                  className="btn-home"
-                  variant="outlined"
-                  color="primary"
-                  fullWidth="bool"
-                >
+                <Button className="btn-home" variant="outlined" color="primary">
                   <Link to={"/productos/" + photo.id}>COMPRAR AHORA</Link>
                 </Button>
               </div>

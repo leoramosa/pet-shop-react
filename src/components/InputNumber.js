@@ -38,7 +38,13 @@ class InputNumber extends React.Component {
         <button className="btn-qua" type="button" onClick={this.decrement}>
           &minus;
         </button>
-        <span className="inpuntcontent">{this.value}</span>
+        <input
+          className="inpuntcontent"
+          value={this.value}
+          defaultValue="1"
+          min="1"
+          max="10"
+        />
         <button className="btn-qua" type="button" onClick={this.increment}>
           &#43;
         </button>

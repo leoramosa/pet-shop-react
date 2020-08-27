@@ -2,3 +2,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+
+.listacategoria {
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  padding: 3px;
+  padding-left: 10px;
+  background-color: #f3f3f3;
+  margin-bottom: 1px;
+}
+
+.homecontent {
+  padding-top: 20px;
+}

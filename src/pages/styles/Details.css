@@ -167,3 +167,8 @@
 .btn-add {
   display: contents;
 }
+
+.modal-detail {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import InputNumber from "../components/InputNumber";
 import "./styles/Details.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Modal from "../components/Modal";
+import { AppContext } from "../context/AppContext";
+
 function DetailsProduct(props) {
+  let { cart, setCart } = useContext(AppContext);
+  const [cantidad, setCantidad] = useState(1);
   const [producto, setProducto] = useState({
     idcolor: [],
     idtallaproducto: [],
     idcategoria: [],
   });
-  /* const valid = props.match.params.id; */
+  const val_id = props.match.params.id;
   useEffect(() => {
     axios
       .get(
-        "https://apirestshoop.herokuapp.com/servicios/productos/" +
-          props.match.params.id +
-          "/"
+        "https://apirestshoop.herokuapp.com/servicios/productos/" + val_id + "/"
       )
       .then((res) => {
         setProducto(res.data);
@@ -38,6 +41,36 @@ function DetailsProduct(props) {
       this.classList.add("active");
       document.getElementById("featured").src = this.src;
     });
+  }
+  function updateCantidad(e) {
+    setCantidad(e.target.value);
+  }
+
+  function agregarProducto() {
+    let idprod = props.match.params.id;
+    let nProducto = {
+      id: idprod,
+      nombre: producto.nombre,
+      precio: producto.precionormal,
+      cantidad: parseInt(cantidad),
+    };
+    let nCart = cart;
+    let encontrado = false;
+    for (let item of nCart) {
+      // Recorro los items del carrito
+      if (item.id === idprod) {
+        // Si encuentro el producto en el carrito
+        item.cantidad += nProducto.cantidad; //sumo la cantidad que compro a la existente
+        encontrado = true;
+        break;
+      }
+    }
+    if (!encontrado)
+      //si no se encontró el producto en el carrito
+      nCart = cart.concat(nProducto); //Agrego un nuevo producto
+    localStorage.setItem("cart", JSON.stringify(nCart));
+    setCart(nCart);
+    alert("Producto agregado!");
   }
 
   return (
@@ -83,7 +116,12 @@ function DetailsProduct(props) {
             </div>
           </div>
           <div className="col-xs-12 col-sm-12 col-md-5 description__product">
-            <p className="title_product">{producto.nombre}</p>
+            <div className="modal-detail">
+              <p className="title_product">{producto.nombre}</p>
+              <div className="">
+                <Modal />
+              </div>
+            </div>
             <p className="description_product">{producto.descripcion}</p>
             <div className="title_price">
               <div className="price_internet">
@@ -120,9 +158,19 @@ function DetailsProduct(props) {
               </div>
             </div>
             <div className="btn_compra_quanty">
-              <InputNumber min={1} max={10} />
+              <InputNumber
+                type="number"
+                className="cantidad"
+                onChange={updateCantidad.bind(this)}
+                defaultValue="1"
+                min="1"
+              />
               <div className="btn-add">
-                <Button variant="contained" color="primary" fullWidth="bool">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={agregarProducto.bind(this)}
+                >
                   agregar a bolsa
                 </Button>
               </div>

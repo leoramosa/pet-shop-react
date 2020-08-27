@@ -1,241 +1,79 @@
-import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-
-import MoreIcon from "@material-ui/icons/MoreVert";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
-import { Link } from "react-router-dom";
-
-import logopet from "../images/logo.png";
-
+import React, { useEffect, useState, useContext } from "react";
+import { Button } from "./Button";
 import "./styles/Navbar.css";
+import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import LogoPet from "../images/logo.png";
+import Badge from "@material-ui/core/Badge";
 
-const useStyles = makeStyles((theme) => ({
-  maincolor: {
-    background: "#673ab7",
-  },
-  Mainlayout: {
-    padding: theme.spacing(0),
-    width: "1140px",
-    margin: "auto",
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(5),
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(9),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
-}));
+import ModalCart from "../components/ModalCart";
 
-export default function Navbar() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+function Navbar() {
+  let { cart, setCart } = useContext(AppContext);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  useEffect(() => {
+    if (localStorage.cart) {
+      let nCart = localStorage.getItem("cart");
+      setCart(JSON.parse(nCart));
+    }
+  }, []);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [clicked, setclicked] = useState(false);
+
+  const handleClick = () => {
+    setclicked({ clicked: !clicked });
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const OpenModal = () => {
+    setShowModal(true);
   };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+  const CloseModal = () => {
+    setShowModal(false);
   };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
-    <div className={classes.grow}>
-      <AppBar className={classes.maincolor} position="static">
-        <div xs={12} className={classes.Mainlayout}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
-            <div className="">
-              <Link to="/">
-                <img src={logopet} alt="" />
-              </Link>
-            </div>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <div className="link-nav">
-                <Link to="/">Home</Link>
-              </div>
-              <div className="link-nav">
-                <Link to="/products">Productos</Link>
-              </div>
-              <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={0} color="secondary">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </div>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </div>
+    <nav className="NavbarItems">
+      <h1 className="navbar-logo">
+        <img src={LogoPet} alt="" />
+      </h1>
+      <div className="menu-icon" onClick={handleClick}>
+        <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+      </div>
+      <ul className={clicked ? "nav-menu active" : "nav-menu"}>
+        <li>
+          <Link to="/" className="nav-links">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/products" className="nav-links">
+            Products
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-links">
+            <Badge badgeContent={cart.length} color="primary">
+              <ShoppingCartIcon />
+            </Badge>
+          </Link>
+        </li>
+        <li>
+          <Link to="/Contact" className="nav-links">
+            Contact Us
+          </Link>
+        </li>
+        <ModalCart CloseModal={CloseModal} showModal={showModal} />
+
+        <button type="button" onClick={OpenModal}>
+          open
+        </button>
+      </ul>
+      <Button>Sign Up</Button>
+    </nav>
   );
 }
+
+export default Navbar;

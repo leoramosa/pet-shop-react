@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
@@ -13,71 +14,67 @@ import SwiperCore, {
 } from "swiper";
 
 import Gallery from "../components/Gallery";
-
+import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
-
 import TitleDestacado from "../images/title-destacado.png";
-
 import "./styles/PetHome.css";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 SwiperCore.use([Autoplay]);
 
-class PetHome extends React.Component {
-  state = {
-    loading: true,
-    gif: null,
-  };
+function PetHome() {
+  const [petproduct, setLista] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://apirestshoop.herokuapp.com/servicios/productos/")
+      .then((res) => {
+        setLista(res.data);
+      });
+  }, []);
 
-  async componentDidMount() {
-    const url =
-      "https://apirestshoop.herokuapp.com/servicios/productos/?activo=1/";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ gif: data, loading: false });
-  }
-
-  render() {
-    if (this.state.loading === true) {
-      return "Loading...";
-    }
-    return (
-      <div className="">
+  return (
+    <React.Fragment>
+      <React.Fragment>
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
           loop={true}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          /* autoplay={{ delay: 2500, disableOnInteraction: false }} */
           navigation
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
         >
-          {this.state.gif.map((prod) => (
+          {petproduct.map((prod) => (
             <SwiperSlide key={prod.id}>
-              <Link to={"/productos/" + prod.id}>
+              <div className="">
                 <div className="title-banner">
                   <p className="title-big-banner">{prod.nombre}</p>
                   <p className="banner-description">{prod.brevedescripcion}</p>
-                  <Link to={"/productos/" + prod.id}>
-                    <div className="btn-adqui">COMPRAR AHORA</div>
-                  </Link>
+                  <div className="">
+                    <Link to={`/productos/${prod.id}`}>
+                      <div className="btn-adqui">COMPRAR AHORA</div>
+                    </Link>
+                  </div>
                 </div>
                 <img src={prod.fotoportada} alt="" />
-              </Link>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="">
-          <img className="img-fluid" src={TitleDestacado} alt="" />
-        </div>
-        <div className="Gallery_container">
-          <Gallery />
-        </div>
+      </React.Fragment>
+      <div className="">
+        <img className="img-fluid" src={TitleDestacado} alt="imagen" />
       </div>
-    );
-  }
+      <div className="">
+        <Modal />
+      </div>
+      <div className="Gallery_container">
+        <Gallery />
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default PetHome;
