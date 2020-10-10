@@ -1,8 +1,4 @@
-.layout-content {
-  flex: 1;
-}
-
-.layout-global {
+body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;

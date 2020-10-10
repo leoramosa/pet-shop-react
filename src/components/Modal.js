@@ -57,7 +57,7 @@ export default function Modal() {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>leo</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>Tallas</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

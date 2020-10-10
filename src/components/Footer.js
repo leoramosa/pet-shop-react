@@ -1,13 +1,13 @@
-import React from "react";
-import "./styles/Footer.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './styles/Footer.scss';
+import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div>
       <footer className="Footer">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-4">
+        <div className="container-footer">
+          <div className="column-footer">
+            <div className="column-footer-content">
               <div className="box">
                 <h3>Productos</h3>
                 <ul>
@@ -23,7 +23,7 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="col-xs-12 col-md-4">
+            <div className="column-footer-content">
               <div className="box">
                 <h3>Acerca del Petshop</h3>
                 <ul>
@@ -36,7 +36,7 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="col-xs-12 col-md-4">
+            <div className="column-footer-content">
               <div className="box">
                 <h3>Contacto</h3>
                 <input />

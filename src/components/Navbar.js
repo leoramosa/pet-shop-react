@@ -1,78 +1,118 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Button } from "./Button";
-import "./styles/Navbar.css";
-import { Link } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import LogoPet from "../images/logo.png";
-import Badge from "@material-ui/core/Badge";
+import React, { useEffect, useState, useContext } from 'react';
 
-import ModalCart from "../components/ModalCart";
+import './styles/Navbar.css';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import { makeStyles } from '@material-ui/core/styles';
+import LogoPet from '../images/logo.png';
+import Badge from '@material-ui/core/Badge';
+import ModalCart from './ModalCart';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  badges: {
+    '& .MuiBadge-badge': {
+      background: '#17d2c9',
+      color: 'black',
+    },
+  },
+}));
 
 function Navbar() {
+  const classes = useStyles();
   let { cart, setCart } = useContext(AppContext);
 
   useEffect(() => {
     if (localStorage.cart) {
-      let nCart = localStorage.getItem("cart");
+      let nCart = localStorage.getItem('cart');
       setCart(JSON.parse(nCart));
     }
-  }, []);
+  }, [setCart]);
 
-  const [clicked, setclicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setclicked({ clicked: !clicked });
+  /*
+  usando clasess funcionaria asi
+   const handleClick = () => {
+    setClicked({ clicked });
+  }; */
+
+  const [showModalCart, setShowModalCart] = useState(false);
+
+  const OpenModalCart = () => {
+    setShowModalCart(true);
   };
-
-  const [showModal, setShowModal] = useState(false);
-
-  const OpenModal = () => {
-    setShowModal(true);
-  };
-  const CloseModal = () => {
-    setShowModal(false);
+  const CloseModalCart = () => {
+    setShowModalCart(false);
   };
 
   return (
-    <nav className="NavbarItems">
-      <h1 className="navbar-logo">
-        <img src={LogoPet} alt="" />
-      </h1>
-      <div className="menu-icon" onClick={handleClick}>
-        <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+    <div className="container-nav">
+      <div className="content-nav">
+        <nav className="NavbarItems">
+          <h1 className="navbar-logo">
+            <Link to={'/'}>
+          
+            <img src={LogoPet} alt="" />
+            </Link>
+          </h1>
+          <div
+            className="menu-icon"
+            onClick={() => setClicked((clicked) => !clicked)}
+          >
+            <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+          </div>
+          <div className="cart-mobile">
+            <li className="carticon" onClick={OpenModalCart}>
+              <Badge className={classes.badges} badgeContent={cart.length}>
+                <ShoppingCartIcon />
+              </Badge>
+            </li>
+          </div>
+          <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
+            <li>
+              <Link
+                to="/"
+                className="nav-links"
+                onClick={() => setClicked((clicked) => !clicked)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/products"
+                onClick={() => setClicked((clicked) => !clicked)}
+                className="nav-links"
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Contact"
+                className="nav-links"
+                onClick={() => setClicked((clicked) => !clicked)}
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li className="cart-desktop" onClick={OpenModalCart}>
+              <Badge className={classes.badges} badgeContent={cart.length}>
+                <ShoppingCartIcon />
+              </Badge>
+            </li>
+            <ModalCart
+              CloseModalCart={CloseModalCart}
+              showModalCart={showModalCart}
+            />
+          </ul>
+        </nav>
       </div>
-      <ul className={clicked ? "nav-menu active" : "nav-menu"}>
-        <li>
-          <Link to="/" className="nav-links">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/products" className="nav-links">
-            Products
-          </Link>
-        </li>
-        <li>
-          <Link className="nav-links">
-            <Badge badgeContent={cart.length} color="primary">
-              <ShoppingCartIcon />
-            </Badge>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Contact" className="nav-links">
-            Contact Us
-          </Link>
-        </li>
-        <ModalCart CloseModal={CloseModal} showModal={showModal} />
-
-        <button type="button" onClick={OpenModal}>
-          open
-        </button>
-      </ul>
-      <Button>Sign Up</Button>
-    </nav>
+    </div>
   );
 }
 

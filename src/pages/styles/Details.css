@@ -172,3 +172,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.content_color-talla {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color-talla-defa {
+  width: 50%;
+  margin: 0 5px;
+}

@@ -1,7 +1,15 @@
 body {
   font-family: roboto;
 }
+.content-pethome {
+  max-width: 1228px;
+}
 
+.cover-pet,
+.img-destacado {
+  max-width: 100%;
+  width: 100%;
+}
 .swiper-container {
   padding-top: 15px;
 }
