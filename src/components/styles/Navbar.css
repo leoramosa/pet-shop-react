@@ -232,14 +232,8 @@
   .navbar-logo img {
     width: 100%;
   }
-  .NavbarItems {
-    height: 65px;
-  }
-  .menu-icon {
-    top: 25%;
-    right: 5%;
-    transform: none;
-  }
+
+
   .title-banner {
     padding-top: 10%;
     font-size: 15px;
