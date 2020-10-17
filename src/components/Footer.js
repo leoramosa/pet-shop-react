@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/Footer.scss';
-import { Link } from 'react-router-dom';
+
 function Footer() {
   return (
     <div>
@@ -18,9 +18,9 @@ function Footer() {
                     <a className="webbleo" href="https://leoramos.netlify.app/" target="blank">leoramos.app</a>
                   </li>
                   <li className="redes">
-                    <a href="https://www.instagram.com/leo.ramosa/" target="blank"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.facebook.com/leonardo.ramos.ar" target="blank"><i class="fab fa-instagram-square"></i></a>
-                    <a href="https://www.linkedin.com/in/leonardoramos-a/" target="blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/leo.ramosa/" target="blank"><i className="fab fa-facebook-square"></i></a>
+                    <a href="https://www.facebook.com/leonardo.ramos.ar" target="blank"><i className="fab fa-instagram-square"></i></a>
+                    <a href="https://www.linkedin.com/in/leonardoramos-a/" target="blank"><i className="fab fa-linkedin"></i></a>
                   </li>
                 </ul>
               </div>
