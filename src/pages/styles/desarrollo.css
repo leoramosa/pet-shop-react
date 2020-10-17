@@ -3,16 +3,16 @@ body {
 }
 
 .appweb {
-  height: 200px;
   justify-content: center;
   display: flex;
 }
-
+.autorapp{
+  font-size: 22px;
+}
 .contentapp {
+  padding-top: 6.5%;
   color: white;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
   text-align: center;
 }
 

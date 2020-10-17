@@ -10,12 +10,12 @@ function Footer() {
             <div className="column-footer-content">
               <div className="box">
                 <ul>
-                  <li>
+                  <li className="autorapp">
                   Desarrollado por 
                     <a className="linkweb" href="https://leoramos.netlify.app/" target="blank"> Leonardo Ramos</a>
                   </li>
                   <li>
-                    <a className="webbleo" href="https://leoramos.netlify.app/" target="blank">leoramos.app</a>
+                    <a className="webbleo" href="https://leoramos.netlify.app/" target="blank">leoramos.netlify.app/</a>
                   </li>
                   <li className="redes">
                     <a href="https://www.instagram.com/leo.ramosa/" target="blank"><i className="fab fa-facebook-square"></i></a>
