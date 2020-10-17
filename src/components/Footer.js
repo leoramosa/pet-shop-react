@@ -9,40 +9,23 @@ function Footer() {
           <div className="column-footer">
             <div className="column-footer-content">
               <div className="box">
-                <h3>Productos</h3>
                 <ul>
                   <li>
-                    <Link to="">Nuevos Productos</Link>
+                  Desarrollado por 
+                    <a className="linkweb" href="https://leoramos.netlify.app/" target="blank"> Leonardo Ramos</a>
                   </li>
                   <li>
-                    <Link to="">En oferta</Link>
+                    <a className="webbleo" href="https://leoramos.netlify.app/" target="blank">leoramos.app</a>
                   </li>
-                  <li>
-                    <Link to="">Últimos productos</Link>
+                  <li className="redes">
+                    <a href="https://www.instagram.com/leo.ramosa/" target="blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.facebook.com/leonardo.ramos.ar" target="blank"><i class="fab fa-instagram-square"></i></a>
+                    <a href="https://www.linkedin.com/in/leonardoramos-a/" target="blank"><i class="fab fa-linkedin"></i></a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="column-footer-content">
-              <div className="box">
-                <h3>Acerca del Petshop</h3>
-                <ul>
-                  <li>
-                    <Link to="">Sobre nosotros</Link>
-                  </li>
-                  <li>
-                    <Link to="">Nuestras tiendas</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="column-footer-content">
-              <div className="box">
-                <h3>Contacto</h3>
-                <input />
-                <button>Enviar</button>
-              </div>
-            </div>
+
           </div>
         </div>
       </footer>

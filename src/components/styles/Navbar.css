@@ -1,31 +1,8 @@
-.NavbarItems {
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-}
 
-.container-nav {
-  background-color: #673ab7;
-}
 
-.content-nav {
-  max-width: 1280px;
-  margin: auto;
-}
 
-.carticon {
-  color: white;
-  cursor: pointer;
-  padding: 0 5px;
-}
-
-.navbar-logo {
-  color: #fff;
-  justify-self: start;
-  margin-left: 20px;
-  cursor: pointer;
+.navbar-logo{
+  text-align: center;
 }
 
 .fa-react {
@@ -92,9 +69,7 @@
   .cart-desktop {
     display: none;
   }
-  .NavbarItems {
-    position: relative;
-  }
+ 
 
   .nav-menu {
     display: flex;
@@ -128,10 +103,8 @@
   }
 
   .navbar-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
+    position: relative;
+    transform: none
   }
 
   .menu-icon {
@@ -214,10 +187,8 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .navbar-logo {
-    top: 17%;
-    transform: none;
-    left: 0%;
+  .navbar-logo  img{
+    padding: 5px 35px;
   }
   .cart-mobile {
     right: 15%;
@@ -256,12 +227,9 @@
   .cart-mobile {
     right: 20%;
   }
-  .navbar-logo {
-    top: 25%;
-    transform: none;
-  }
+
   .navbar-logo img {
-    max-width: 118px;
+    width: 100%;
   }
   .NavbarItems {
     height: 65px;

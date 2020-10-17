@@ -59,57 +59,8 @@ function Navbar() {
             <img src={LogoPet} alt="" />
             </Link>
           </h1>
-          <div
-            className="menu-icon"
-            onClick={() => setClicked((clicked) => !clicked)}
-          >
-            <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-          </div>
-          <div className="cart-mobile">
-            <li className="carticon" onClick={OpenModalCart}>
-              <Badge className={classes.badges} badgeContent={cart.length}>
-                <ShoppingCartIcon />
-              </Badge>
-            </li>
-          </div>
-          <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
-            <li>
-              <Link
-                to="/"
-                className="nav-links"
-                onClick={() => setClicked((clicked) => !clicked)}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/products"
-                onClick={() => setClicked((clicked) => !clicked)}
-                className="nav-links"
-              >
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/Contact"
-                className="nav-links"
-                onClick={() => setClicked((clicked) => !clicked)}
-              >
-                Contact Us
-              </Link>
-            </li>
-            <li className="cart-desktop" onClick={OpenModalCart}>
-              <Badge className={classes.badges} badgeContent={cart.length}>
-                <ShoppingCartIcon />
-              </Badge>
-            </li>
-            <ModalCart
-              CloseModalCart={CloseModalCart}
-              showModalCart={showModalCart}
-            />
-          </ul>
+
+           
         </nav>
       </div>
     </div>
